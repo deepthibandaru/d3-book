@@ -1,13 +1,53 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="utf-8">
-        <title>D3 Page Template</title>
-        <script type="text/javascript" src="../d3/d3.v3.js"></script>
-    </head>
-    <body>
-        <script type="text/javascript">
-            // Your beautiful D3 code will go here
-        </script>
-    </body>
-</html>
+package com.vzwcorp.ws;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.HashMap;
+import java.util.Map;
+
+
+public class test {
+
+     public static void main(String[] args) throws IOException {
+
+        BufferedReader br = null;
+        try {
+            br = new BufferedReader(new InputStreamReader(System.in));
+            BufferedReader reader = new BufferedReader(new FileReader(br.readLine())); 
+            String textFile = reader.readLine();
+            String[] stringArr = textFile.split(" ");
+            String[] words = textFile.split(" ");
+            Map<String,Integer> map=new HashMap<String,Integer>();
+            for(int i = 0; i < stringArr.length;i++){
+            	String word = stringArr[i];
+            	int count = 0;
+            	String str = null;
+            	for(int j = 0; j < words.length;j++){
+                	 str = words[j];
+                	if(str.equals(word)){
+                		count+= 1;
+                	}
+                }
+            	map.put(word, count);
+            	 
+            }
+            for(Map.Entry m:map.entrySet()){  
+     		   System.out.println(m.getKey()+" "+m.getValue());  
+            }
+            reader.close(); 
+        } catch (Exception e) {
+			
+			e.printStackTrace();
+		} 
+
+        finally {
+            try {
+                if (br != null)br.close();
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
+        }
+    }
+}
